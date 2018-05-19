@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+
+    
+<head>
+    
+     <title>mentee allocation</title>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        html{
+            height: 100%;
+            width: 100%;
+            background-color: #2B2C2C;
+            position: relative;
+        }
+        #first{
+            position: absolute;
+            width: 30%;
+            height: 65%;
+            background-color:#2d2e2e;
+            border: 4px solid #E0A80D;
+            left: 35%;
+            top: 17.5%;
+            border-radius: 30%;
+        }
+        #mentor_profile{
+            border: 4px solid #E0A80D;
+            border-radius: 30%;
+            background-color: #2D2E2E;
+            width: 67%;
+            height: 17%;
+            position: absolute;
+            left:28%;
+            color: hotpink;
+            margin: auto;
+            padding: 20px;
+            text-align:center;
+            font-family: cursive;
+            font-size: 400%;
+            font-weight: 600;
+/*            display: none;*/
+            
+        }
+        #mentor{
+            
+            position: absolute;
+            top: 30%;
+            left: 0.7%;
+            color: yellow;
+            font-size: 62.5%;
+            font-weight: 0.16;
+            font-family:fantasy;
+                    
+        }
+        
+        #mentor1{
+            
+            position: absolute;
+            top: 30%;
+            right: 0.7%;
+            color: yellow;
+            font-size: 62.5%;
+            font-weight: 0.16;
+            font-family:fantasy;
+                    
+        }
+    
+        #mentee_inputs{
+            border: 4px solid #E0A80D;
+            position: absolute;
+            border-radius: 30%;
+            top: 3.3%;
+            width: 25.8%;
+            padding: 4px;
+            height: 17%;
+            background-color:#2D2E2E;
+            margin: 2px;
+            text-align: center;
+        }
+        
+        .comment_box{
+            
+            position: absolute;
+            left: 28%;
+            top: 31%;
+            border: 4px solid #E0A80D;
+            border-radius: 20%;
+            background-color: #2D2E2E;
+            width: 67%;
+            height: 340px;
+            margin: auto;
+            padding: 20px;
+            align-content: center;
+        }
+        .name_box{
+            
+            position:absolute;
+/*            border: 4px solid #E0A80D;*/
+            width: auto;
+            height: auto;
+            font-size: 2.5em;
+            font-family: cursive;
+            color: hotpink;
+            text-align: center;
+            left: 5%;
+        }
+        .level{
+            
+            position:absolute;
+/*            border: 4px solid #E0A80D;*/
+            width: auto;
+            height: auto;
+            font-size: 2em;
+            font-family: cursive;
+            color: hotpink;
+            text-align: center;
+            left: 5%;
+            top: 20%;
+        }
+        .comments
+        {
+            position:absolute;
+            border: 4px solid #E0A80D;
+            width: 80%;
+            height: 40%;
+            font-size: 1.2em;
+            font-family: cursive;
+            color: hotpink;
+            text-align: center;
+            left: 10%;
+            top: 50%;
+            padding: 2px;
+            margin: 2px;
+            border-radius: 5%;
+        }
+        .sidebar{
+/*            border: 1px solid #E0A80D;*/
+            position: absolute;
+            top: 23.3%;
+            width: 26.4%;
+            padding: 4px;
+            height:auto;
+            background-color:#2D2E2E;
+            margin: 2px;
+            text-align: center;
+            display: none;
+        
+        }
+        .mentee_list_part1{
+            
+             border: 4px solid #E0A80D;
+/*            position: absolute;*/
+            border-radius: 30%;
+/*            top: 23.7%*/
+            width: 92%;
+            padding: 6px;
+            height: 50px;
+            background-color:#2D2E2E;
+            margin: 2px;
+            align-content:center ;
+            position: relative;
+        }
+        .mentee_list_part2{
+            
+/*            border: 2px solid pink;*/
+            position: absolute;
+/*            top: */
+            width: 90%;
+            left: 5%;
+            top: 15%;
+            color: hotpink;
+            font-size: 1.5em;
+        }
+    
+    </style>
+    
+    
+</head>
+<body>
+    <center> <div id="first"><h1 style="color: white"><br>Hello mentor!<br> <br>
+        
+        <input type="text" id="mentor_name" placeholder="type your name" style="color: hotpink; width: 60%; height:20%; position: absolute; left: 20%;top: 40%; text-align: center;border-radius: 30%;border:3px solid #e0a80d ;background-color: black;">
+        <br>
+        <br>
+        <input type="submit" id="submit" value="Lets's start!" style="color: yellow;font-size: 1em;position: absolute; top: 80%;left: 27%;background-color: #2d2e2e; border: 2px solid #e0a80d; border-radius:20%; ">
+        </h1></div></center>
+    <div id="mentor_profile">
+<!--         DEEP BHATTACHARYYA -->
+       <div id="mentor" >Hi !</div>
+       <div id="mentor1" >! iH</div>
+    </div>
+     <div id="mentee_inputs">
+        <span style="color: yellow; font-size: 1.4em;font-family:sans-serif; font-weight: 400">ADD MENTEE</span> <br>
+         <form id="myForm">
+         <input type="text" name="inputtxt" id="inputtxt" placeholder="(Type Mentee's name)"  style="text-align: center;color: hotpink;background-color:#2D2E2E; width: 90%; height: 30%; border:0px; ">
+         </form>
+         <br> 
+         
+         &nbsp;&nbsp;
+         <input type="image" id="1" src="star%20(1).png" alt="1 star "  onclick="myFunction(1)">&nbsp;&nbsp;&nbsp;
+         <input type="image" id="2" src="star%20(1).png" alt="2 stars"  onclick="myFunction(2)">&nbsp;&nbsp;&nbsp;
+         <input type="image" id="3" src="star%20(1).png" alt="3 stars"  onclick="myFunction(3)">&nbsp;&nbsp;&nbsp;
+         <input type="image" id="4" src="star%20(1).png" alt="4 stars"  onclick="myFunction(4)">&nbsp;&nbsp;&nbsp;
+         <input type="image" id="5" src="star%20(1).png" alt="5 stars"  onclick="myFunction(5)">&nbsp;&nbsp;&nbsp;
+    </div>
+    
+    
+    <div class="comment_box" id="comment_box">
+    <div class="name_box">Paranjoypaulkjgjhasfc
+    </div>
+    <input type="submit" value="Edit/Delete" class="edit_delete" onclick="edit()" style="position: absolute; right: 5%; top: 10%; color: white; font-size: 1.5em; background-color: #2d2e2e; border: 0px "> 
+    <div class="level"> biginner</div>  
+        <div class="comments"></div>
+    </div>
+    <div class="comment_box" id="edit/delete">
+             <input type="text" name="editname" id="editname" placeholder="edit name" value="" style="text-align: center;color: hotpink;background-color:#2D2E2E; width: 75%; height: 10%; border:0px;position: absolute;left: 12.5% ">
+             <input type="text" name="editrating" id="editrating" placeholder="edit rating" value="" style="text-align: center;color: hotpink;background-color:#2D2E2E; width: 75%; height: 10%; border:0px;position: absolute;left: 12.5% ;top:22%;">
+            <input type="text" name="editcomments" id="editcomments" placeholder="edit comments" value="" style="text-align: center;color: hotpink;background-color:#2D2E2E; width: 75%; height: 43%; border:0px;position: absolute;left: 12.5%;top: 40% ">
+             
+             <input type="submit" value="UPDATE" class="update" onclick="update()" style="position: absolute; left: 25%; top: 86%; color: white; font-size: 1.5em; background-color: #2d2e2e; border: 0px "> 
+        <input type="submit" value="DELETE" class="delete" onclick="deleteit()" style="position: absolute; right: 25%; top: 86%; color: red; font-size: 1.5em; background-color: #2d2e2e; border: 0px "> 
+    
+    </div>
+    <div class="sidebar" id="mentee_list"><center>
+          <div class="mentee_list_part1" id="mentee_list_part1"> 
+                  <div class="mentee_list_part2" id="mentee_list_part2"> </div>
+        </div>
+        </center>
+    </div>
+    
+    
+    <script>
+        
+        document.getElementById("mentor_profile").style.display="none";
+        document.getElementById("mentee_inputs").style.display="none";
+//        document.getElementsByClassName("mentee_list_part2").style.display="none";
+//        document.getElementById("mentee_list").style.display="block";
+        document.getElementById("edit/delete").style.display="none";
+        document.getElementById("comment_box").style.display="none";
+        var mentor_name;
+        var mentee_counter=0;
+        
+        document.getElementById("submit").onclick= function(){
+             mentor_name=document.getElementById("mentor_name").value;
+//            window.alert(mentor_name);
+            if(mentor_name!="")
+                {
+                    document.getElementById("first").style.display="none";
+                    document.getElementById("mentor_profile").innerHTML += mentor_name;
+                    document.getElementById("mentor_profile").style.display="block";
+                    document.getElementById("mentee_inputs").style.display="block";
+                }
+            
+            
+        }
+  
+     function myFunction(v) 
+    {
+        var z = document.getElementById("inputtxt").value;
+        var s= star(v);
+        document.getElementById("myForm").reset();
+        window.alert(z);
+        if(mentee_counter==0 && z!="")
+            {   
+                
+                document.getElementById("mentee_list_part2").innerHTML=z + "<br>" +s;
+                mentee_counter++;
+                document.getElementById("mentee_list").style.display="block";
+                document.getElementById("mentee_list_part1").style.display="block";
+                document.getElementById("mentee_list_part2").style.display="block";
+//                var element= document.createElement("div");
+//                var para = document.createElement("div");
+//                var node = document.createTextNode(z);
+//                para.appendChild(node);
+//                para.setAttribute("class","mentee_list_part2");
+//                element.setAttribute("class","mentee_list_part1");
+//                var child = document.getElementById("mentee_list");
+//                element.appendChild(para);
+//                child.appendChild(element);
+                
+            }
+         
+        else if(mentee_counter!=0 && z!="")
+            {
+                mentee_counter++;   
+                var element= document.createElement("div");
+                var para = document.createElement("div");
+                var node = document.createTextNode(z);
+                para.appendChild(node);
+                var br= document.createElement("br");
+                node = document.createTextNode(s);
+                para.appendChild(br);
+                para.appendChild(node);
+                para.setAttribute("class","mentee_list_part2");
+                element.setAttribute("class","mentee_list_part1");
+                var child = document.getElementById("mentee_list");
+                element.appendChild(para);
+                child.appendChild(element);
+//                    var ele= document.createElement("div");
+//                    var par = document.createElement("div");
+//                    var node = document.createTextNode(z);
+//                    par.appendChild(node);
+//                    par.setAttribute("class","mentee_list_part2");
+//                    ele.setAttribute("class","mentee_list_part1");
+//                    var child = document.getElementById("mentee_list");
+//                    ele.appendChild(par);
+//                    child.insertBefore(ele,element);
+                
+                
+                
+            }
+//        window.alert(mentee_counter);
+    }
+    
+      function edit()
+        {
+            
+            
+        }
+        
+        function update()
+        {}
+        function deleteit()
+        {}
+         function star(j)
+        {  
+            var s="*  "
+            for(i=0;i<j-1;i++)
+                {
+                    s=s+"*  ";
+                }
+            return s;
+        }
+    
+ /*       
+        var element= document.createElement("div");
+var para = document.createElement("div");
+var node = document.createTextNode("This is new.");
+para.appendChild(node);
+para.setAttribute("class","mentee_list_part2");
+element.setAttribute("class","mentee_list_part1");
+var child = document.getElementById("mentee_list");
+        element.appendChild(para);
+//element.insertBefore(para,child);
+child.appendChild(element);
+        
+                var ele= document.createElement("div");
+var par = document.createElement("div");
+var node = document.createTextNode("This is another new.");
+par.appendChild(node);
+par.setAttribute("class","mentee_list_part2");
+ele.setAttribute("class","mentee_list_part1");
+var child = document.getElementById("mentee_list");
+        ele.appendChild(par);
+        child.insertBefore(ele,element);
+//element.insertBefore(para,child);
+//child.appendChild(ele);
+   */     
+        
+        
+        
+        
+    </script>
+    
+</body>
+
+
+</html>
