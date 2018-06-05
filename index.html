@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>run deep</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<style>
+canvas {
+    background-color: black;
+    position: absolute;
+    top: 135px;
+    left: 340px;
+    }
+    body{
+        margin: 0;
+        background: black;
+    }
+</style>
+</head>
+<body onload="start()">
+    
+    <audio id="dead">
+    <source src="dead.mp3" type="audio/mpeg">
+    </audio>
+    
+    
+<script>
+//var d = new sound("dead.mp3");
+//var mySound = new sound("smb_mariodie.wav");
+var deep;
+var obs = [];
+function start() {
+    deep = new gamecomponent(15, 15, "yellow", 20, 185,1);
+    gamearea.start();
+     
+}
+
+var gamearea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 620; 
+        this.canvas.height = 370; 
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.frameNo  = 0;
+        this.interval = setInterval(updateGameArea, 12);
+        window.addEventListener('mousemove', function (e) {
+            if(e.pageX>350 && e.pageX<955 && e.pageY>150 && e.pageY<490){
+            gamearea.x = e.pageX-340;
+            gamearea.y = e.pageY-135;}
+        })
+        },
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    },
+    stop : function() {
+        clearInterval(this.interval);
+//        mySound.play();
+    }    
+}
+function gameborder(){
+        ctx = gamearea.context;
+        ctx.strokeStyle = "#EE3F7A";
+        ctx.lineWidth=10;
+        ctx.strokeRect(0,0 ,620 ,370 );
+}
+//function sound(src) {
+//    this.sound = document.createElement("audio");
+//    this.sound.src = src;
+//    this.sound.setAttribute("preload", "auto");
+//    this.sound.setAttribute("controls", "none");
+//    this.sound.style.display = "none";
+//    document.body.appendChild(this.sound);
+//    this.play = function(){
+//        this.sound.play();
+//    }
+//    this.stop = function(){
+//        this.sound.load();
+//    }    
+//}
+function gamecomponent(width, height, color, x, y,z) {
+    this.width = width;
+    this.height = height;
+    this.speedX = 0;
+    this.speedY = 0;    
+    this.x = x;
+    this.y = y;    
+    this.z = z;
+    this.update = function() {
+        ctx = gamearea.context;
+        if(this.z==1)
+        {ctx.beginPath();ctx.arc(this.x,this.y,(this.width), 0, 2*Math.PI); ctx.fillStyle=color; ctx.fill(); }
+        else{
+        ctx.fillStyle = color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);}
+    }
+    
+    this.crashWith = function(otherobj) {
+        var x1=otherobj.x;
+        var x2=otherobj.x + (otherobj.width);
+        var y1=otherobj.y;
+        var y2= otherobj.y + (otherobj.height);
+        var crash = true;;
+        var d1=x1-this.x;
+        var d2=this.y-y2;
+        var d3=this.x-x2;
+        var d4=y1-this.y;
+        if(d1>13 || d2>13 || d3>13 || d4>13){crash=false;}
+        
+        return crash;
+    }
+}
+ var h;
+    var u=25;
+function updateGameArea() {
+    var x, y;
+    gamearea.clear();
+    gamearea.frameNo += 0.0625;
+//    if(gamearea.frameNo%150==0 && u>=10){
+//        clearInterval(gamearea.interval);
+//        u=u-3;
+//        
+//         y = (166)*Math.random();
+//         h= 175 + Math.floor(41*Math.random());
+//         var g=10*Math.random();
+////        if(g>7){g=11;}
+//         if(g!=11){obs.push(new gamecomponent(25, h, "#EE3F7A", 620, y,0));}
+////        else {obs.push(new gamecomponent(60, 60, "#EE3F7A", 370, Math.floor(170*Math.random())+180,1));}
+//        
+//        gamearea.interval = setInterval(updateGameArea, u);
+//        gamearea.interval();
+//    }
+    if (gamearea.x && gamearea.y) {
+        deep.x = gamearea.x;
+        deep.y = gamearea.y;        
+    }
+    if (gamearea.frameNo == 1 || everyinterval(9.375)) {
+         y = (166)*Math.random();
+         h= 175 + Math.floor(41*Math.random());
+         var g=10*Math.random();
+//        if(g>7){g=11;}
+         if(g!=11){obs.push(new gamecomponent(25, h, "#EE3F7A", 620, y,0));}
+//        else {obs.push(new gamecomponent(60, 60, "#EE3F7A", 370, Math.floor(170*Math.random())+180,1));}
+    }
+    for (i = 0; i < obs.length; i += 1) {
+        obs[i].x += -1;
+        obs[i].update();
+    }
+    var j=Math.floor(gamearea.frameNo);
+    document.getElementById("score").innerHTML="Score "+j;
+    deep.update();
+    gameborder();
+     for (i = 0; i < obs.length; i += 1) {
+        if (deep.crashWith(obs[i])) {
+//            console.log("1");
+            gamearea.stop();
+            var c= document.getElementById("dead");
+//            console.log("2");
+            c.play();
+            return;
+//            console.log("3");
+//            d.play();
+//            console.log("4");
+//        
+        }
+    }
+}
+
+function everyinterval(n) {
+    if ((gamearea.frameNo / n) % 1 == 0) {return true;}
+    else {return false;}
+}
+
+</script>
+<button id="restart" style="color: yellow;font-size: 2em;border: 0; background: black;position: absolute;top: 88%;left: 45%;"onClick="document.location.reload()">RESTART</button>
+<div id="score" style="color: dodgerblue;border: yellow;font-size: 2.1em;font-weight: bold;position: absolute;left: 76%;top: 10%;">Score 0</div>
+</body>
+</html>
