@@ -24,10 +24,10 @@ canvas {
     
     
 <script>
-//var d = new sound("dead.mp3");
-//var mySound = new sound("smb_mariodie.wav");
 var deep;
 var obs = [];
+var level=1;
+    var score=0;
 function start() {
     deep = new gamecomponent(15, 15, "yellow", 20, 185,1,0);
     gamearea.start();
@@ -42,7 +42,7 @@ var gamearea = {
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo  = 0;
-        this.interval = setInterval(updateGameArea, 18);
+        this.interval = setInterval(updateGameArea, 17);
         window.addEventListener('mousemove', function (e) {
             if(e.pageX>350 && e.pageX<955 && e.pageY>150 && e.pageY<490){
             gamearea.x = e.pageX-340;
@@ -54,7 +54,6 @@ var gamearea = {
     },
     stop : function() {
         clearInterval(this.interval);
-//        mySound.play();
     }    
 }
 function gameborder(){
@@ -107,7 +106,7 @@ function gamecomponent(width, height, color, x, y,z,m) {
         var d2=this.y-y2;
         var d3=this.x-x2;
         var d4=y1-this.y;
-        if(d1>13 || d2>13 || d3>13 || d4>13){crash=false;}
+        if(d1>15 || d2>15 || d3>15 || d4>15){crash=false;}
         }
      else{   
         var d=(this.x - x1)*(this.x - x1) + (this.y - y1)*(this.y - y1);
@@ -122,39 +121,36 @@ function updateGameArea() {
     var x, y;
     gamearea.clear();
     gamearea.frameNo += 0.0625;
-//    if(gamearea.frameNo%150==0 && u>=10){
-//        clearInterval(gamearea.interval);
-//        u=u-3;
-//        
-//         y = (166)*Math.random();
-//         h= 175 + Math.floor(41*Math.random());
-//         var g=10*Math.random();
-////        if(g>7){g=11;}
-//         if(g!=11){obs.push(new gamecomponent(25, h, "#EE3F7A", 620, y,0));}
-////        else {obs.push(new gamecomponent(60, 60, "#EE3F7A", 370, Math.floor(170*Math.random())+180,1));}
-//        
-//        gamearea.interval = setInterval(updateGameArea, u);
-//        gamearea.interval();
-//    }
+    score = (gamearea.frameNo - 0.0625) + level*2;
+    if( (score ==100) ||  (score==300) )
+        {level = level +1;}
+    if(score > 350 && score%100 ==0){level = level + 1;}
     if (gamearea.x && gamearea.y) {
         deep.x = gamearea.x;
         deep.y = gamearea.y;        
     }
     if (gamearea.frameNo == 1 || everyinterval(9.375)) {
-         y = (166)*Math.random();
-         h= 175 + Math.floor(41*Math.random());
+         y = (150)*Math.random() +10;
+         h= 105 + Math.floor(80*Math.random());
          var g=10*Math.random();
+         var p= 10*Math.random() -5;
+           p= p/(Math.abs(p));
         if(g>7){g=11;}
-         if(g!=11){obs.push(new gamecomponent(25, h, "#EE3F7A", 620, y,0,0));}
-        else {obs.push(new gamecomponent(40, 40, "#EE3F7A", 660, Math.floor(270*Math.random())+70,1,2.5));}
+         if(g!=11 || level==1){obs.push(new gamecomponent(25, h, "#EE3F7A", 620, y,0,1*p));}
+        else if(g=11 && level>=2) {obs.push(new gamecomponent(40, 40, "#EE3F7A", 660, Math.floor(220*Math.random())+55,1,2*p));
+             }
     }
     for (i = 0; i < obs.length; i += 1) {
         obs[i].x += -1;
          if(obs[i].z==1 && (obs[i].y>=321 || obs[i].y<=49) ){obs[i].m=obs[i].m*(-1);}
-         if(obs[i].z==1 ){obs[i].y +=obs[i].m;}
+         if(obs[i].z==1 ){obs[i].y +=obs[i].m; }//obs[i].x += -(Math.abs(obs[i].m)) +1;
+        if(level>=3){
+        if(obs[i].z!=1 && (obs[i].y + obs[i].height >370 || obs[i].y<10) ){obs[i].m=obs[i].m*(-1);}
+        if(obs[i].z!=1 ){obs[i].y += obs[i].m; }
+        }
         obs[i].update();
     }
-    document.getElementById("score").innerHTML="Score "+ Math.floor(gamearea.frameNo);
+    document.getElementById("score").innerHTML="Score "+ Math.floor(score);
     deep.update();
     gameborder();
      for (i = 0; i < obs.length; i += 1) {
@@ -162,22 +158,16 @@ function updateGameArea() {
 //            console.log("1");
             gamearea.stop();
             var c= document.getElementById("dead");
-//            console.log("2");
             c.play();
             document.getElementById("restart").style.display="block";
             h=setInterval(deepfall,4);
-//            deep.clear;
-            return;
-//            console.log("3");
-//            d.play();
-//            console.log("4");
-//        
+            return;        
         }
     }
 }
 function deepfall(){
     deep.y +=1.5;
-    document.getElementById("score").innerHTML="G A M E &nbsp; O V E R!"+"<br>"+"&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;"+"Score "+ Math.floor(gamearea.frameNo);
+    document.getElementById("score").innerHTML="G A M E &nbsp; O V E R!"+"<br>"+"&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;"+"Score "+ Math.floor(score);
     gamearea.clear();
     for (i = 0; i < obs.length; i += 1) {
         obs[i].update();
