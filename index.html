@@ -164,6 +164,7 @@ function updateGameArea() {
             var c= document.getElementById("dead");
 //            console.log("2");
             c.play();
+            document.getElementById("restart").style.display="block";
             h=setInterval(deepfall,4);
 //            deep.clear;
             return;
@@ -176,7 +177,7 @@ function updateGameArea() {
 }
 function deepfall(){
     deep.y +=1.5;
-    document.getElementById("score").innerHTML="G A M E  O V E R"+"<br>"+"&nbsp; &nbsp;"+"Score "+ Math.floor(gamearea.frameNo);
+    document.getElementById("score").innerHTML="G A M E &nbsp; O V E R!"+"<br>"+"&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;"+"Score "+ Math.floor(gamearea.frameNo);
     gamearea.clear();
     for (i = 0; i < obs.length; i += 1) {
         obs[i].update();
@@ -195,7 +196,7 @@ function everyinterval(n) {
 }
 
 </script>
-<button id="restart" style="color: yellow;font-size: 2em;border: 0; background: black;position: absolute;top: 88%;left: 45%;"onClick="document.location.reload()">RESTART</button>
+<button id="restart" style="color: yellow;font-size: 2em;border: 0; background: black;position: absolute;top: 88%;left: 45%;display: none;"onClick="document.location.reload()">RESTART</button>
 <div id="score" style="color: dodgerblue;border: yellow;font-size: 2.1em;font-weight: bold;position: absolute;left: 76%;top: 10%;">Score 0</div>
 </body>
 </html>
