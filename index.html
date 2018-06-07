@@ -121,9 +121,12 @@ function updateGameArea() {
     var x, y;
     gamearea.clear();
     gamearea.frameNo += 0.0625;
-    score = (gamearea.frameNo - 0.0625) + level*2;
+    score +=(level*0.0625);
     if( (score ==100) ||  (score==300) )
         {level = level +1;}
+    if(level>=2){document.getElementById("level2").style.color="dodgerblue";}
+    if(level>=3){document.getElementById("level3").style.color="dodgerblue";}
+    
     if(score > 350 && score%100 ==0){level = level + 1;}
     if (gamearea.x && gamearea.y) {
         deep.x = gamearea.x;
@@ -140,6 +143,7 @@ function updateGameArea() {
         else if(g=11 && level>=2) {obs.push(new gamecomponent(40, 40, "#EE3F7A", 660, Math.floor(220*Math.random())+55,1,2*p));
              }
     }
+//    console.log(obs[1].x -obs[2].x);
     for (i = 0; i < obs.length; i += 1) {
         obs[i].x += -1;
          if(obs[i].z==1 && (obs[i].y>=321 || obs[i].y<=49) ){obs[i].m=obs[i].m*(-1);}
@@ -188,5 +192,8 @@ function everyinterval(n) {
 </script>
 <button id="restart" style="color: yellow;font-size: 2em;border: 0; background: black;position: absolute;top: 88%;left: 45%;display: none;"onClick="document.location.reload()">RESTART</button>
 <div id="score" style="color: dodgerblue;border: yellow;font-size: 2.1em;font-weight: bold;position: absolute;left: 76%;top: 10%;">Score 0</div>
+    <div id="level2" style="color: yellow;font-size: 1.76em;position: absolute;top: 85%;">SCORE <strong>100</strong> TO UNLOCK LEVEL 2</div>
+    <div id="level3" style="color: yellow;font-size: 1.76em;position: absolute;top: 90%;">SCORE <strong>300</strong> TO UNLOCK LEVEL 3</div>
+    
 </body>
 </html>
