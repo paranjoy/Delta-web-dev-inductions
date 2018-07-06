@@ -1,191 +1,91 @@
 body{
-    background: url("img1.jpg") no-repeat center center; 
-    background-attachment: fixed;
-    font-family: "Lato", sans-serif;
-    transition: background-color .5s;  
+    background: url(wallpaper.jpg) center center fixed;
+    background-size: cover;
 }
-
-
-#signup{
-    background-color: rgba(0, 0, 0, 0.5); 
-    position: absolute;
-    width: 350px;
-    height:auto;
-    top: 12%;
-    left: 37%;
+#color{
+    width: 50px;
+    background-color: white;
+    border: 1px dotted dimgray;
+    float: left;
+    margin-left: 10px;
 }
-
-.error{
-    color: red;
+.slider{
+    -webkit-appearance: none;
+    width: 10%;
+    height: 8px;
+    border-radius: 5px;
+    background: orangered;
+    outline: none;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
 }
-
-.sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-    padding-bottom: 10px;
-}
-
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-    cursor: default;
-}
-
-.sidenav a:hover {
-    color: #f1f1f1;
-}
-
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 1px;
-    font-size: 36px;
-    margin-left: 50px;
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: black;
     cursor: pointer;
 }
-
-#main {
-    transition: margin-left .5s;
-    padding: 16px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-
-#add{
-color: white; 
-background-color: rgba(80,80,80,0.3); 
-font-size: 2em; 
-border: 3px solid #aaa;
-cursor: pointer;
-}
-
-#add:hover {
-background-color: #222;
-}
-
-
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-    position: relative;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 0;
-    border: 1px solid #888;
-    width: 80%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s
-}
-
-/* Add Animation */
-@-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0} 
-    to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-}
-
-/* The Close Button */
-.close {
-    color: white;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
+.slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: black;
     cursor: pointer;
 }
-
-.modal-header {
-    padding: 2px 16px;
-    background-color: #999;
+#circle{
+    height: 2px;  
+    width: 2px;
+    border-radius: 50%;
+    background: black;
+}
+#pencil:hover {
+    background-color: red;
+}
+#eraser:hover {
+    background-color: red;
+}
+#letter:hover {
+    background-color: red;
+}
+#oval:hover {
+    background-color: white;
+}
+#line:hover {
+    background-color: white;
+}
+#reset{
+    color: orangered;
+    cursor: pointer;
+    width: 150px;
+    height: 30px;
+    font-size:1.3em;
+    position: absolute;
+    bottom: 18px;
+    left: 70px; 
+    font-weight: bolder;
+}
+#reset:hover{
+    background: orangered;
     color: white;
+    border: 2px solid yellow;
 }
-
-.modal-body {padding: 2px 16px;}
-
-.modal-footer {
-    padding: 2px 16px;
-    background-color: #999;
+#undo{
+    color: orangered;
+    cursor: pointer;
+    width: 150px;
+    height: 30px;
+    font-size:1.3em;
+    position: absolute;
+    bottom: 62px;
+    left: 70px; 
+    font-weight: bolder;
+}
+#undo:hover {
+    font-family: cursive;
+    background: orangered;
     color: white;
-}
-
-#title{
-  width: 90%;
-  height: 45px;
-  font-size:2em;
-  text-align: center;
-  border: 0px;
-  border-radius: 6px;
-}
-#email{
-  width: 70%;
-  height: 25px;
-  font-size:1.2em;
-  text-align: center;
-  border: 0px;
-  border-radius: 6px;
-}
-#submit{
-  width: 20%;
-  height: 25px;
-  font-size:1.2em;
-  text-align: center;
-  background-color: white;
-  border: 0px;
-  border-radius: 6px;
-  margin-right: 20px;
-  float: right;
-}
-textarea{
-  width:60%;
-  height: 60px;
-  text-align: center;
-} 
-textarea placeholder{
-  font-size: 2em;
-  text-align: center;
-}
-.ac{
-  width: 200px;
-  height: 30px;  
+    border: 2px solid yellow;
 }
