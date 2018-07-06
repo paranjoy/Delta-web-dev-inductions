@@ -117,12 +117,13 @@
         mouse.x = e.pageX - this.offsetLeft;
         mouse.y = e.pageY - this.offsetTop;
         if(mode == "paint" || mode == "erase"){
-        ctx.beginPath();// added++    
-        ctx.moveTo(mouse.x, mouse.y);//added++    
+        ctx.beginPath();    
+        ctx.moveTo(mouse.x, mouse.y);   
         src[c1++] = canvas.toDataURL();
         j=0;    
         ctx.lineTo(mouse.x, mouse.y);
-        ctx.stroke();}
+        ctx.stroke();
+        line=1;}
         else if(mode == "text"){
              var txt = document.getElementById("text_input").value;
              var num = document.getElementById("number").value;
@@ -138,7 +139,7 @@
              j=0;
              if(line == 1){ 
              ctx.beginPath();
-             ctx.moveTo(x, y);     
+             ctx.moveTo(mouse.x, mouse.y);          
              line=2;
              }
              ctx.lineWidth = slider.value;
@@ -203,6 +204,7 @@
         line=1;
     }; 
     document.getElementById("letter").onclick = function(){
+        var line=1;
         if(mode != "text"){
             mode = "text";
             document.getElementById("draw_circle").style.display="none";
@@ -227,6 +229,7 @@
             }   
     };        
     document.getElementById("line").onclick = function(){
+        var line=1;
         if(mode != "line"){
             mode = "line";
             line =1;
@@ -253,6 +256,7 @@
             }   
     };
     document.getElementById("eraser").onclick = function(){
+        var line=1;
         if(mode != "erase")
             {
                 document.getElementById("eraser").style.backgroundColor="red";
@@ -275,7 +279,8 @@
         }
     }; 
         document.getElementById("pencil").onclick = function(){
-        if(mode == "paint")
+            var line=1;
+            if(mode == "paint")
             {
                 document.getElementById("pencil").style.backgroundColor="";
                 mode = "";
@@ -297,6 +302,7 @@
             }
     };
     document.getElementById("oval").onclick = function(){
+           var line=1;
         if(mode != "circle"){
             mode = "circle";
             line =1;
