@@ -34,8 +34,8 @@
         </div>
         <div style="width: 32px; height: 32px; border: 1px solid white; position: absolute; top: 300px; cursor: pointer; padding: 4px 4px 4px 4px;" id="oval">
         <img src="circle.png" >
-        <input type="number" placeholder="RADIUS" id="draw_circle"  style="position: absolute; left: 78px; height:20px ; width: 70px; top: 2px; display: none " min="15" max="300" >
         </div>
+        <input type="number" placeholder="RADIUS" id="draw_circle"  style="position: absolute; left: 98px; height:20px ; width: 70px; top: 302px; display: none" min="15" max="300" value="15" >
         <div style="width: 32px; height: 32px; border: 1px solid white; position: absolute; top: 350px; cursor: pointer; padding: 4px 4px 4px 4px;" id="line">
         <img src="drawing.png" >
         </div>
@@ -148,7 +148,18 @@
              ctx.moveTo(mouse.x, mouse.y);
              x=mouse.x;
              y= mouse.y;
-        }    
+        }  
+        else if(mode == "circle"){
+            src[c1++] = canvas.toDataURL();
+            j=0;
+            var r=document.getElementById("draw_circle").value;
+            ctx.lineWidth = slider.value;
+            ctx.strokeStyle = document.getElementById("color").value;
+            ctx.beginPath();
+            ctx.arc(mouse.x,mouse.y,r,0,2*Math.PI);
+            ctx.stroke();
+            
+        }
             
         } );
         container.addEventListener("mousemove", function(e){//move the mouse while holding mouse key
@@ -194,6 +205,8 @@
     document.getElementById("letter").onclick = function(){
         if(mode != "text"){
             mode = "text";
+            document.getElementById("draw_circle").style.display="none";
+            document.getElementById("oval").style.backgroundColor="";
             document.getElementById("pencil").style.backgroundColor="";
             document.getElementById("eraser").style.backgroundColor="";
             document.getElementById("letter").style.backgroundColor="red";
@@ -203,6 +216,8 @@
         }
         else{
             mode = "";
+            document.getElementById("draw_circle").style.display="none";
+            document.getElementById("oval").style.backgroundColor="";
             document.getElementById("pencil").style.backgroundColor="";
             document.getElementById("eraser").style.backgroundColor="";
             document.getElementById("letter").style.backgroundColor="";
@@ -215,6 +230,8 @@
         if(mode != "line"){
             mode = "line";
             line =1;
+            document.getElementById("draw_circle").style.display="none";
+            document.getElementById("oval").style.backgroundColor="";
             document.getElementById("pencil").style.backgroundColor="";
             document.getElementById("eraser").style.backgroundColor="";
             document.getElementById("letter").style.backgroundColor="";
@@ -224,6 +241,8 @@
         }
         else{
             mode = "";
+            document.getElementById("draw_circle").style.display="none";
+            document.getElementById("oval").style.backgroundColor="";
             document.getElementById("pencil").style.backgroundColor="";
             document.getElementById("eraser").style.backgroundColor="";
             document.getElementById("letter").style.backgroundColor="";
@@ -234,12 +253,14 @@
             }   
     };
     document.getElementById("eraser").onclick = function(){
-        if(mode == "paint" || mode =="text" || mode =="line")
+        if(mode != "erase")
             {
                 document.getElementById("eraser").style.backgroundColor="red";
+                document.getElementById("draw_circle").style.display="none";
                 document.getElementById("line").style.backgroundColor="";
                 document.getElementById("pencil").style.backgroundColor="";
                 document.getElementById("letter").style.backgroundColor="";
+                document.getElementById("oval").style.backgroundColor="";
                 document.getElementById("text").style.display="none";
                 document.getElementById("using").innerHTML="ERASER IN USE";
                 mode = "erase";
@@ -263,16 +284,44 @@
                 document.getElementById("using").innerHTML="SELECT A DRAWING TOOL";
             }
         else{
+                document.getElementById("draw_circle").style.display="none";
                 document.getElementById("pencil").style.backgroundColor="red";
                 document.getElementById("eraser").style.backgroundColor="";
                 document.getElementById("letter").style.backgroundColor="";
+                document.getElementById("oval").style.backgroundColor="";
                 document.getElementById("line").style.backgroundColor="";
                 document.getElementById("text").style.display="none";
                 mode = "paint";
                 p=1;
                 document.getElementById("using").innerHTML="PENCIL IN USE";
             }
-    }; 
+    };
+    document.getElementById("oval").onclick = function(){
+        if(mode != "circle"){
+            mode = "circle";
+            line =1;
+            document.getElementById("draw_circle").style.display="block";
+            document.getElementById("pencil").style.backgroundColor="";
+            document.getElementById("eraser").style.backgroundColor="";
+            document.getElementById("letter").style.backgroundColor="";
+            document.getElementById("text").style.display="none";
+            document.getElementById("line").style.backgroundColor="";
+            document.getElementById("oval").style.backgroundColor="white";
+            document.getElementById("using").innerHTML="CIRCLE IN USE";
+        }
+        else{
+            mode = "";
+            document.getElementById("draw_circle").style.display="none";
+            document.getElementById("pencil").style.backgroundColor="";
+            document.getElementById("eraser").style.backgroundColor="";
+            document.getElementById("letter").style.backgroundColor="";
+            document.getElementById("text").style.display="none";
+            document.getElementById("line").style.backgroundColor="";
+            document.getElementById("oval").style.backgroundColor="";
+            document.getElementById("text").style.display="none";
+            document.getElementById("using").innerHTML="SELECT A DRAWING TOOL";
+            }   
+    };
     </script>
     </body>
 </html>
