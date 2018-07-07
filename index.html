@@ -133,6 +133,7 @@
              src[c1++] = canvas.toDataURL();
              j=0;
              ctx.fillText(txt, mouse.x, mouse.y);
+            line=1;
         }
         else if(mode == "line"){
              src[c1++] = canvas.toDataURL();
@@ -159,7 +160,7 @@
             ctx.beginPath();
             ctx.arc(mouse.x,mouse.y,r,0,2*Math.PI);
             ctx.stroke();
-            
+            line=1;
         }
             
         } );
